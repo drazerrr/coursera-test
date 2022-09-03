@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>specificity</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        div p.experiment {
+            color: aquamarine; 
+        }
+        /* div p.experiment will win because it has 0 style 0 id but one class and 2 elements total score=12 */
+        p.experiment {
+            color: blue;
+        }
+        /* p.experment wil loose because it has 1 class and one element total score=11 */
+    </style>
+</head>
+<div>
+    <p class="experiment">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus hic adipisci dolore pariatur reiciendis quas aut non sapiente maiores aliquid iusto, nemo laboriosam nisi quos natus dolorem eaque vel minima?</p>
+</div>
+<body>
+    
+</body>
+</html>
