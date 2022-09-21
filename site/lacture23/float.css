@@ -1,0 +1,45 @@
+.div{
+    background-color: #00ffff;
+    position: relative;
+    top: 60px;
+}
+p{
+    width: 50px;
+    height: 50px;
+    border: 1px solid;
+}
+#p1{
+    background-color: #A52A2A;
+    position: relative;
+    top: 65px;
+    left: 65px;
+   
+}
+#p2{
+    background-color: #DEB887;
+   
+}
+
+section {
+    clear:left;
+}
+@media (min-width: 1200px) {
+    #p1 {
+        width: 80%;
+    }
+    #p2 {
+        width: 150px;
+        height: 150px;
+    }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+
+    #p1 {
+        width: 50%;
+    }
+    #p2 {
+        width: 100px;
+        height: 100px;
+    }
+
+}
