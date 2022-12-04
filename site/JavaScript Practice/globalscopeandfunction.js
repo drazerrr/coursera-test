@@ -1,0 +1,2 @@
+/* if a variable define in the function variable does not use in other function or outside of that function
+it is called local variable*/
