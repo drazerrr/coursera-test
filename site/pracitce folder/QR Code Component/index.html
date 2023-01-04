@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   
   <title>Frontend Mentor | QR code component</title>
 
@@ -13,10 +14,13 @@
     @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
     
     .main{
+      height: 100vh;
+      width: 100vw;
       background-color: hsl(212, 45%, 89%);
       display: flex;
-      align-self: center;
+      align-items: center;
       justify-content: center;
+      
     }
     .container{
       width: 300px;
@@ -43,10 +47,11 @@
       font-family: 'Outfit', sans-serif;
       font-weight: 400;
     }
+    @media ()
   </style>
  </head>
  <body class="main">
-        <div class="container">
+        <div class="container mobile-responsive">
           <img src="/images/image-qr-code.png" alt="qr image">
           <p class="bold">Improve your front-end skills by building projects</p>
           <p class="describe">Scan the QR code to visit Frontend Mentor and take your coding skills to the next level</p>
