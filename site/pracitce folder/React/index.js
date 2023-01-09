@@ -1,34 +1,34 @@
-/* Pass an Array as Props
-The last challenge demonstrated how to pass information from a parent component to a child component as props or properties. This challenge looks at how arrays can be passed as props. To pass an array to a JSX element, it must be treated as JavaScript and wrapped in curly braces.
+/*Use PropTypes to Define the Props You Expect
+React provides useful type-checking features to verify that components receive props of the correct type. For example, your application makes an API call to retrieve data that you expect to be in an array, which is then passed to a component as a prop. You can set propTypes on your component to require the data to be of type array. This will throw a useful warning when the data is of any other type.
 
-<ParentComponent>
-  <ChildComponent colors={["green", "blue", "red"]} />
-</ParentComponent>
-The child component then has access to the array property colors. Array methods such as join() can be used when accessing the property. const ChildComponent = (props) => <p>{props.colors.join(', ')}</p> This will join all colors array items into a comma separated string and produce: <p>green, blue, red</p> Later, we will learn about other common methods to render arrays of data in React.
+It's considered a best practice to set propTypes when you know the type of a prop ahead of time. You can define a propTypes property for a component in the same way you defined defaultProps. Doing this will check that props of a given key are present with a given type. Here's an example to require the type function for a prop called handleClick:
 
-There are List and ToDo components in the code editor. When rendering each List from the ToDo component, pass in a tasks property assigned to an array of to-do tasks, for example ["walk dog", "workout"]. Then access this tasks array in the List component, showing its value within the p element. Use join(", ") to display the props.tasksarray in the p element as a comma separated list. Today's list should have at least 2 tasks and tomorrow's should have at least 3 tasks. */
-const List = (props) => {
-    { /* Change code below this line */ }
-    return <p>{props.tasks.join(', ')}</p>
-    { /* Change code above this line */ }
+MyComponent.propTypes = { handleClick: PropTypes.func.isRequired }
+In the example above, the PropTypes.func part checks that handleClick is a function. Adding isRequired tells React that handleClick is a required property for that component. You will see a warning if that prop isn't provided. Also notice that func represents function. Among the seven JavaScript primitive types, function and boolean (written as bool) are the only two that use unusual spelling. In addition to the primitive types, there are other types available. For example, you can check that a prop is a React element. Please refer to the documentation for all of the options.
+
+Note: As of React v15.5.0, PropTypes is imported independently from React, like this: import PropTypes from 'prop-types';
+
+Define propTypes for the Items component to require quantity as a prop and verify that it is of type number.*/
+
+const Items = (props) => {
+    return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
   };
   
-  class ToDo extends React.Component {
+  // Change code below this line
+  Items.propTypes = {quantity: PropTypes.number.isRequired};
+  
+  // Change code above this line
+  
+  Items.defaultProps = {
+    quantity: 0
+  };
+  
+  class ShoppingCart extends React.Component {
     constructor(props) {
       super(props);
     }
     render() {
-      return (
-        <div>
-          <h1>To Do Lists</h1>
-          <h2>Today</h2>
-          { /* Change code below this line */ }
-          <List tasks={['eat', 'sleep', 'repeat']}/>
-          <h2>Tomorrow</h2>
-          <List tasks={['kao', 'so', 'dobara karo']}/>
-          { /* Change code above this line */ }
-        </div>
-      );
+      return <Items />
     }
   };
-  ReactDOM.render(<ToDo />, document.getElementById("new"))
+  ReactDOM.render(<Items />, document.getElementById("new"));
