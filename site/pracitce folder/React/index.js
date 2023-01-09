@@ -1,46 +1,41 @@
-/*Create a Controlled Input
-Your application may have more complex interactions between state and the rendered UI. For example, form control elements for text input, such as input and textarea, maintain their own state in the DOM as the user types. With React, you can move this mutable state into a React component's state. The user's input becomes part of the application state, so React controls the value of that input field. Typically, if you have React components with input fields the user can type into, it will be a controlled input form.
+/*Pass State as Props to Child Components
+You saw a lot of examples that passed props to child JSX elements and child React components in previous challenges. You may be wondering where those props come from. A common pattern is to have a stateful component containing the state important to your app, that then renders child components. You want these components to have access to some pieces of that state, which are passed in as props.
 
-The code editor has the skeleton of a component called ControlledInput to create a controlled input element. The component's state is already initialized with an input property that holds an empty string. This value represents the text a user types into the input field.
+For example, maybe you have an App component that renders a Navbar, among other components. In your App, you have state that contains a lot of user information, but the Navbar only needs access to the user's username so it can display it. You pass that piece of state to the Navbar component as a prop.
 
-First, create a method called handleChange() that has a parameter called event. When the method is called, it receives an event object that contains a string of text from the input element. You can access this string with event.target.value inside the method. Update the input property of the component's state with this new string.
+This pattern illustrates some important paradigms in React. The first is unidirectional data flow. State flows in one direction down the tree of your application's components, from the stateful parent component to child components. The child components only receive the state data they need. The second is that complex stateful apps can be broken down into just a few, or maybe a single, stateful component. The rest of your components simply receive state from the parent as props, and render a UI from that state. It begins to create a separation where state management is handled in one part of code and UI rendering in another. This principle of separating state logic from UI logic is one of React's key principles. When it's used correctly, it makes the design of complex, stateful applications much easier to manage.
 
-In the render method, create the input element above the h4 tag. Add a value attribute which is equal to the input property of the component's state. Then add an onChange() event handler set to the handleChange() method.
-
-When you type in the input box, that text is processed by the handleChange() method, set as the input property in the local state, and rendered as the value in the input box on the page. The component state is the single source of truth regarding the input data.
-
-Last but not least, don't forget to add the necessary bindings in the constructor.*/
-class ControlledInput extends React.Component {
+The MyApp component is stateful and renders a Navbar component as a child. Pass the name property in its state down to the child component, then show the name in the h1 tag that's part of the Navbar render method. name should appear after the text Hello, my name is:.*/
+class MyApp extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        input: ''
-      };
-      // Change code below this line
-      this.handleChange = this.handleChange.bind(this);
-  
-      // Change code above this line
+        name: 'CamperBot'
+      }
     }
-    // Change code below this line
-    handleChange(event){
-      this.setState({
-        input: event.target.value
-      })
-  
-    }
-  
-    // Change code above this line
     render() {
       return (
-        <div>
-          { /* Change code below this line */}
-          <input value={this.state.input} onChange={this.handleChange} />
-  
-          { /* Change code above this line */}
-          <h4>Controlled Input:</h4>
-          <p>{this.state.input}</p>
-        </div>
+         <div>
+           {/* Change code below this line */}
+           <Navbar name={this.state.name}/>
+           {/* Change code above this line */}
+         </div>
       );
     }
   };
-  ReactDOM.render(<ControlledInput />, document.getElementById("new"))
+  
+  class Navbar extends React.Component {
+    constructor(props) {
+      super(props);
+    }
+    render() {
+      return (
+      <div>
+        {/* Change code below this line */}
+        <h1>Hello, my name is: {this.props.name} </h1>
+        {/* Change code above this line */}
+      </div>
+      );
+    }
+  };
+  ReactDOM.render(<MyApp />, document.getElementById("new"))
