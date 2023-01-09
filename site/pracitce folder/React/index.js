@@ -1,41 +1,25 @@
-/*Pass State as Props to Child Components
-You saw a lot of examples that passed props to child JSX elements and child React components in previous challenges. You may be wondering where those props come from. A common pattern is to have a stateful component containing the state important to your app, that then renders child components. You want these components to have access to some pieces of that state, which are passed in as props.
+/*Use the Lifecycle Method componentWillMount
+React components have several special methods that provide opportunities to perform actions at specific points in the lifecycle of a component. These are called lifecycle methods, or lifecycle hooks, and allow you to catch components at certain points in time. This can be before they are rendered, before they update, before they receive props, before they unmount, and so on. Here is a list of some of the main lifecycle methods: componentWillMount() componentDidMount() shouldComponentUpdate() componentDidUpdate() componentWillUnmount() The next several lessons will cover some of the basic use cases for these lifecycle methods.
 
-For example, maybe you have an App component that renders a Navbar, among other components. In your App, you have state that contains a lot of user information, but the Navbar only needs access to the user's username so it can display it. You pass that piece of state to the Navbar component as a prop.
+Note: The componentWillMount Lifecycle method will be deprecated in a future version of 16.X and removed in version 17. Learn more in this article
 
-This pattern illustrates some important paradigms in React. The first is unidirectional data flow. State flows in one direction down the tree of your application's components, from the stateful parent component to child components. The child components only receive the state data they need. The second is that complex stateful apps can be broken down into just a few, or maybe a single, stateful component. The rest of your components simply receive state from the parent as props, and render a UI from that state. It begins to create a separation where state management is handled in one part of code and UI rendering in another. This principle of separating state logic from UI logic is one of React's key principles. When it's used correctly, it makes the design of complex, stateful applications much easier to manage.
+The componentWillMount() method is called before the render() method when a component is being mounted to the DOM. Log something to the console within componentWillMount() - you may want to have your browser console open to see the output.
 
-The MyApp component is stateful and renders a Navbar component as a child. Pass the name property in its state down to the child component, then show the name in the h1 tag that's part of the Navbar render method. name should appear after the text Hello, my name is:.*/
-class MyApp extends React.Component {
+*/
+class MyComponent extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {
-        name: 'CamperBot'
-      }
     }
-    render() {
-      return (
-         <div>
-           {/* Change code below this line */}
-           <Navbar name={this.state.name}/>
-           {/* Change code above this line */}
-         </div>
-      );
-    }
-  };
+    componentWillMount() {
+      // Change code below this line
+      console.log('Component Should be Mounted');
   
-  class Navbar extends React.Component {
-    constructor(props) {
-      super(props);
+      // Change code above this line
     }
     render() {
-      return (
-      <div>
-        {/* Change code below this line */}
-        <h1>Hello, my name is: {this.props.name} </h1>
-        {/* Change code above this line */}
+      return( <div> 
+      <h1>Hello Friends</h1>
       </div>
-      );
-    }
+      )}
   };
-  ReactDOM.render(<MyApp />, document.getElementById("new"))
+  ReactDOM.render(<MyComponent />, document.getElementById("new"))
