@@ -1,48 +1,25 @@
-/*Optimize Re-Renders with shouldComponentUpdate
-So far, if any component receives new state or new props, it re-renders itself and all its children. This is usually okay. But React provides a lifecycle method you can call when child components receive new state or props, and declare specifically if the components should update or not. The method is shouldComponentUpdate(), and it takes nextProps and nextState as parameters.
+/*Introducing Inline Styles
+There are other complex concepts that add powerful capabilities to your React code. But you may be wondering about the more simple problem of how to style those JSX elements you create in React. You likely know that it won't be exactly the same as working with HTML because of the way you apply classes to JSX elements.
 
-This method is a useful way to optimize performance. For example, the default behavior is that your component re-renders when it receives new props, even if the props haven't changed. You can use shouldComponentUpdate() to prevent this by comparing the props. The method must return a boolean value that tells React whether or not to update the component. You can compare the current props (this.props) to the next props (nextProps) to determine if you need to update or not, and return true or false accordingly.
+If you import styles from a stylesheet, it isn't much different at all. You apply a class to your JSX element using the className attribute, and apply styles to the class in your stylesheet. Another option is to apply inline styles, which are very common in ReactJS development.
 
-The shouldComponentUpdate() method is added in a component called OnlyEvens. Currently, this method returns true so OnlyEvens re-renders every time it receives new props. Modify the method so OnlyEvens updates only if the value of its new props is even. Click the Add button and watch the order of events in your browser's console as the lifecycle hooks are triggered.
+You apply inline styles to JSX elements similar to how you do it in HTML, but with a few JSX differences. Here's an example of an inline style in HTML:
+
+<div style="color: yellow; font-size: 16px">Mellow Yellow</div>
+JSX elements use the style attribute, but because of the way JSX is transpiled, you can't set the value to a string. Instead, you set it equal to a JavaScript object. Here's an example:
+
+<div style={{color: "yellow", fontSize: 16}}>Mellow Yellow</div>
+Notice how we camelCase the fontSize property? This is because React will not accept kebab-case keys in the style object. React will apply the correct property name for us in the HTML.
+
+Add a style attribute to the div in the code editor to give the text a color of red and font size of 72px.
+
+Note that you can optionally set the font size to be a number, omitting the units px, or write it as 72px.
 */
-class OnlyEvens extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('Should I update?');
-    // Change code below this line
-    return true;
-    // Change code above this line
-  }
-  componentDidUpdate() {
-    console.log('Component re-rendered.');
-  }
-  render() {
-    return <h1>{this.props.value}</h1>;
-  }
-}
-
-class Controller extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: 0
-    };
-    this.addValue = this.addValue.bind(this);
-  }
-  addValue() {
-    this.setState(state => ({
-      value: state.value + 1
-    }));
-  }
+class Colorful extends React.Component {
   render() {
     return (
-      <div>
-        <button onClick={this.addValue}>Add</button>
-        <OnlyEvens value={this.state.value} />
-      </div>
+      <div>Big Red</div>
     );
   }
-}
+};
   ReactDOM.render(<MyComponent />, document.getElementById("new"))
